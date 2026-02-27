@@ -33,7 +33,9 @@ body {
   padding: 40px 20px;
   text-align: center;
   animation: pageOpen 0.8s ease-out;
-  transition: background-color var(--transition), color var(--transition);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 }
 
 @keyframes pageOpen {
@@ -56,7 +58,9 @@ body {
   flex-direction: column;
   align-items: center;
   animation: dropIn 1.2s ease-out;
-  transition: background-color var(--transition), color var(--transition);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 }
 
 @keyframes dropIn {
@@ -79,7 +83,9 @@ header h1 {
   border-right: 16px solid currentColor;
   width: 0;
   display: inline-block;
-  animation: typing 2s steps(17, end) forwards, blink 0.8s step-end infinite;
+  animation:
+    typing 2s steps(17, end) forwards,
+    blink 0.8s step-end infinite;
   transition: color var(--transition);
 }
 
@@ -143,8 +149,11 @@ section p {
   padding: 20px;
   border-radius: 10px;
   width: 250px;
-  transition: transform var(--transition), box-shadow var(--transition),
-    background-color var(--transition), color var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition),
+    color var(--transition);
 }
 
 .project:hover {
@@ -185,7 +194,9 @@ section p {
   margin-top: 20px;
   width: 40px;
   height: 40px;
-  transition: transform var(--transition), filter var(--transition);
+  transition:
+    transform var(--transition),
+    filter var(--transition);
   filter: drop-shadow(0 0 5px var(--color-accent));
 }
 

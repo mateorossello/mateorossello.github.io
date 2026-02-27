@@ -36,7 +36,9 @@ fetch(`https://api.github.com/users/${username}/starred`)
       .slice(0, 6);
 
     if (filtered.length === 0) {
-      container.innerHTML = "<p>No projects to show</p>";
+      const p = document.createElement("p");
+      p.textContent = "No projects to show";
+      container.appendChild(p);
       return;
     }
 
@@ -50,24 +52,44 @@ fetch(`https://api.github.com/users/${username}/starred`)
           day: "2-digit",
           month: "long",
           year: "numeric",
-        }
+        },
       );
 
-      project.innerHTML = `<h3>${repo.name}</h3>
-            <p>${repo.description}</p>
-            <p>Updated ${updatedDate}</p>
-            <div class="project-links">
-                <a href="${repo.html_url}" target="_blank">GitHub</a>
-                ${
-                  repo.has_pages
-                    ? `<a href="https://${username}.github.io/${repo.name}/" target="_blank">Page</a>`
-                    : ""
-                }
-            </div>`;
+      const title = document.createElement("h3");
+      title.textContent = repo.name;
+      project.appendChild(title);
 
+      const desc = document.createElement("p");
+      desc.textContent = repo.description;
+      project.appendChild(desc);
+
+      const dateText = document.createElement("p");
+      dateText.textContent = `Updated ${updatedDate}`;
+      project.appendChild(dateText);
+
+      const linksDiv = document.createElement("div");
+      linksDiv.classList.add("project-links");
+
+      const githubLink = document.createElement("a");
+      githubLink.href = repo.html_url;
+      githubLink.target = "_blank";
+      githubLink.textContent = "GitHub";
+      linksDiv.appendChild(githubLink);
+
+      if (repo.has_pages) {
+        const pageLink = document.createElement("a");
+        pageLink.href = `https://${username}.github.io/${repo.name}/`;
+        pageLink.target = "_blank";
+        pageLink.textContent = "Page";
+        linksDiv.appendChild(pageLink);
+      }
+
+      project.appendChild(linksDiv);
       container.appendChild(project);
     });
   })
   .catch(() => {
-    container.innerHTML = "<p>Error loading projects from GitHub</p>";
+    const p = document.createElement("p");
+    p.textContent = "Error loading projects from GitHub";
+    container.appendChild(p);
   });
